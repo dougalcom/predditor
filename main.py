@@ -16,7 +16,6 @@ mode = "up"  # [up] or [down] vote
 thelimit = None  # how many posts/comments to downvote (for unlimited, set to None)
 
 for account in accounts:
-
     reddit = praw.Reddit(
         client_id=account[2],
         client_secret=account[3],
@@ -24,7 +23,6 @@ for account in accounts:
         username=account[0],
         password=account[1]
     )
-
     # vote on posts
     for submission in reddit.redditor(targetuser).submissions.new(limit=thelimit):
         actions += 1
@@ -37,7 +35,6 @@ for account in accounts:
                   " (" + str(submission.score) + ") with " + account[0])
         except:
             print('⚠ there was some problem voting on  ' + submission.id)
-
     # vote on comments
     for submission in reddit.redditor(targetuser).comments.new(limit=thelimit):
         actions += 1
