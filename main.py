@@ -1,7 +1,7 @@
-import praw, sys
+import praw, sys, time
 
 actions = 0
-version = '1'
+version = '1.01'
 useragent = "predditor-" + version  # user agent
 
 # sockpuppet accounts [username, password, api_client_id, api_secret_id]
@@ -11,11 +11,13 @@ accounts = [
     ['username3', 'password3', 'api_client_id3', 'api_secret_id3']
 ]
 
-targetuser = "target_username"  # the user to vote on
+targetuser = "city_of_edgerton"  # the user to vote on
 mode = "up"  # [up] or [down] vote
 thelimit = None  # how many posts/comments to downvote (for unlimited, set to None)
+interval = 10 # how long to wait before requests (in seconds)
 
 for account in accounts:
+
     reddit = praw.Reddit(
         client_id=account[2],
         client_secret=account[3],
@@ -23,6 +25,7 @@ for account in accounts:
         username=account[0],
         password=account[1]
     )
+
     # vote on posts
     for submission in reddit.redditor(targetuser).submissions.new(limit=thelimit):
         actions += 1
@@ -35,6 +38,8 @@ for account in accounts:
                   " (" + str(submission.score) + ") with " + account[0])
         except:
             print('⚠ there was some problem voting on  ' + submission.id)
+        time.sleep(interval)
+
     # vote on comments
     for submission in reddit.redditor(targetuser).comments.new(limit=thelimit):
         actions += 1
@@ -47,3 +52,4 @@ for account in accounts:
                   " (" + str(submission.score) + ") with " + account[0])
         except:
             print('⚠ there was some problem voting on ' + submission.id)
+        time.sleep(interval)
