@@ -14,7 +14,7 @@ accounts = [
 targetuser = "city_of_edgerton"  # the user to vote on
 mode = "up"  # [up] or [down] vote
 thelimit = None  # how many posts/comments to downvote (for unlimited, set to None)
-interval = 10 # how long to wait before requests (in seconds)
+interval = 1 # how long to wait before requests (in seconds)
 
 for account in accounts:
 
