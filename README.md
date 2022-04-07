@@ -7,5 +7,5 @@ Mass downvote/upvote utility for Reddit written in Python using <a href="https:/
   <li>Supports controlling multiple voting accounts to amplify impact.</li>
   <li>Supports limiting the number of posts and comments affected.</li>
   <li>Requires access to the Reddit API. Configure an application <a href="https://www.reddit.com/prefs/apps">here</a> to acquire client API keys.</li>
-  <li>Rate-limiting</li>
+  <li>Rate-limiting. Using this is highly recommended to avoid account sanctions by Reddit.</li>
 </ul>
